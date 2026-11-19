@@ -18,21 +18,21 @@ export default function TabsLayout({
   const pathname = usePathname();
 
   return (
-    <div className="min-h-dvh h-dvh flex flex-col items-center justify-center bg-zinc-900 sm:p-6 select-none antialiased">
+    <div className="min-h-dvh h-dvh flex flex-col items-center justify-center bg-zinc-900 sm:p-4 select-none antialiased overflow-hidden">
       {/* Phone frame on desktop; full viewport on mobile */}
       <div
-        className="w-full max-w-[390px] h-full sm:h-[844px] sm:max-h-[94dvh] bg-[#FAF8F5] sm:border-[3px] sm:border-black sm:rounded-[42px] overflow-hidden flex flex-col relative"
+        className="w-full max-w-[390px] h-full sm:h-[844px] sm:max-h-[96dvh] bg-[#FAF8F5] sm:border-[3px] sm:border-black sm:rounded-[42px] overflow-hidden flex flex-col relative"
         style={{ boxShadow: "0 0 0 0px transparent" }}
       >
-        {/* Brutal shadow frame on desktop — rendered on top via z-index, pointer-events-none */}
+        {/* Brutal shadow frame on desktop */}
         <div
           className="hidden sm:block absolute inset-0 pointer-events-none rounded-[42px]"
           style={{ boxShadow: "8px 8px 0px #000000", zIndex: 50 }}
           aria-hidden="true"
         />
 
-        {/* Main scrollable content */}
-        <main className="flex-1 flex flex-col overflow-y-auto pb-16 bg-[#FAF8F5]">
+        {/* Main content view */}
+        <main className="flex-1 flex flex-col overflow-hidden pb-16 bg-[#FAF8F5]">
           {children}
         </main>
 

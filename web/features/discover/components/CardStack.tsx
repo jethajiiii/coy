@@ -98,7 +98,7 @@ export const CardStack = forwardRef<CardStackRef, CardStackProps>(
     if (!current) return null;
 
     return (
-      <div className="relative w-full h-[475px] sm:h-[490px] flex items-center justify-center">
+      <div className="relative w-full h-full max-h-[460px] flex items-center justify-center">
         {/* Next card preview behind current */}
         {next && (
           <div

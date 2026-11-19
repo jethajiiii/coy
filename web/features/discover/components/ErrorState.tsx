@@ -14,7 +14,7 @@ export function ErrorState({
 }: ErrorStateProps): React.JSX.Element {
   return (
     <div
-      className="w-full h-[475px] rounded-3xl bg-[#FAF8F5] border-[2.5px] border-black flex flex-col items-center justify-center text-center p-8"
+      className="w-full h-full max-h-[460px] rounded-3xl bg-[#FAF8F5] border-[2.5px] border-black flex flex-col items-center justify-center text-center p-8"
       style={{ boxShadow: "4px 4px 0px #000" }}
     >
       {/* Icon */}

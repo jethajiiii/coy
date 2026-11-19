@@ -23,14 +23,14 @@ import { MessageCircle } from "lucide-react";
 function MysteryBanner(): React.JSX.Element {
   return (
     <div
-      className="mx-4 mb-3 bg-white border-[2px] border-black rounded-2xl px-3 py-2.5 flex items-center gap-2.5"
-      style={{ boxShadow: "2.5px 2.5px 0px #000" }}
+      className="mx-4 mb-2 bg-white border-[2px] border-black rounded-2xl px-3 py-2 flex items-center gap-2.5 shrink-0"
+      style={{ boxShadow: "2px 2px 0px #000" }}
     >
       <div
-        className="w-8 h-8 rounded-full bg-coy-yellow border-[2px] border-black flex items-center justify-center shrink-0"
-        style={{ boxShadow: "1.5px 1.5px 0px #000" }}
+        className="w-7 h-7 rounded-full bg-coy-yellow border-[2px] border-black flex items-center justify-center shrink-0"
+        style={{ boxShadow: "1px 1px 0px #000" }}
       >
-        <MessageCircle size={15} strokeWidth={2.8} className="text-black" />
+        <MessageCircle size={14} strokeWidth={2.8} className="text-black" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-1">
@@ -39,7 +39,7 @@ function MysteryBanner(): React.JSX.Element {
           </span>
           <span className="text-[9px] font-semibold text-neutral-400 shrink-0">now</span>
         </div>
-        <p className="text-[10.5px] leading-tight text-neutral-600 font-medium truncate">
+        <p className="text-[10px] leading-tight text-neutral-600 font-medium truncate">
           Someone with your number added you as their secret crush...
         </p>
       </div>
@@ -102,7 +102,7 @@ export default function DiscoverPage(): React.JSX.Element {
   const showBanner = !feedLoading && !feedError && !isEmpty && activeTab === "discover";
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-[#FAF8F5] relative">
+    <div className="flex-1 flex flex-col h-full bg-[#FAF8F5] relative overflow-hidden">
       <DiscoverHeader
         activeTab={activeTab}
         onTabChange={setActiveTab}
@@ -112,10 +112,14 @@ export default function DiscoverPage(): React.JSX.Element {
       {/* Mystery banner */}
       {showBanner && <MysteryBanner />}
 
-      <div className="flex-1 flex flex-col px-4 pb-2 relative overflow-y-auto">
+      <div
+        className={`flex-1 flex flex-col px-4 pb-1 relative ${
+          activeTab === "discover" ? "overflow-hidden" : "overflow-y-auto"
+        }`}
+      >
         {activeTab === "discover" ? (
-          <div className="flex-1 flex flex-col justify-between items-center w-full">
-            <div className="w-full flex-1 flex items-center justify-center relative">
+          <div className="flex-1 flex flex-col justify-between items-center w-full h-full overflow-hidden">
+            <div className="w-full flex-1 flex items-center justify-center relative min-h-0">
               {feedLoading ? (
                 <SkeletonCard />
               ) : feedError ? (
@@ -135,7 +139,7 @@ export default function DiscoverPage(): React.JSX.Element {
 
             {/* Action Controls */}
             {!feedLoading && !feedError && !isEmpty && (
-              <div className="w-full shrink-0">
+              <div className="w-full shrink-0 pt-1 pb-1">
                 {swipeError && (
                   <p className="text-center text-xs font-bold text-coy-pink pb-1">
                     {swipeError}

@@ -7,7 +7,7 @@ export function SkeletonCard(): React.JSX.Element {
     <div
       role="status"
       aria-label="Loading profiles"
-      className="relative w-full h-[475px] rounded-3xl bg-white border-[2.5px] border-black overflow-hidden flex flex-col"
+      className="relative w-full h-full max-h-[460px] rounded-3xl bg-white border-[2.5px] border-black overflow-hidden flex flex-col"
       style={{ boxShadow: "4px 4px 0px #000" }}
     >
       {/* Photo skeleton */}
