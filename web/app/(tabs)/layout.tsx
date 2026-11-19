@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass, MessageCircle } from "lucide-react";
+import { Home, Compass } from "lucide-react";
 import React from "react";
 
 const NAV_ITEMS = [
+  { href: "/home", label: "Home", Icon: Home },
   { href: "/discover", label: "Discover", Icon: Compass },
-  { href: "/home", label: "Matches", Icon: MessageCircle },
 ] as const;
 
 export default function TabsLayout({
@@ -24,9 +24,9 @@ export default function TabsLayout({
         className="w-full max-w-[390px] h-full sm:h-[844px] sm:max-h-[94dvh] bg-[#FAF8F5] sm:border-[3px] sm:border-black sm:rounded-[42px] overflow-hidden flex flex-col relative"
         style={{ boxShadow: "0 0 0 0px transparent" }}
       >
-        {/* Inner shadow on desktop */}
+        {/* Brutal shadow frame on desktop — rendered on top via z-index, pointer-events-none */}
         <div
-          className="hidden sm:block absolute inset-0 pointer-events-none rounded-[42px] border-[3px] border-black"
+          className="hidden sm:block absolute inset-0 pointer-events-none rounded-[42px]"
           style={{ boxShadow: "8px 8px 0px #000000", zIndex: 50 }}
           aria-hidden="true"
         />
@@ -47,8 +47,8 @@ export default function TabsLayout({
               <Link
                 key={href}
                 href={href}
-                className="flex flex-col items-center gap-0.5 group brutal-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-xl"
                 aria-current={isActive ? "page" : undefined}
+                className="flex flex-col items-center gap-0.5 group brutal-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-xl"
               >
                 <div
                   className={`w-10 h-10 border-[2px] border-black rounded-xl flex items-center justify-center transition-colors ${

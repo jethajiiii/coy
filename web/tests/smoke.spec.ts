@@ -31,9 +31,9 @@ test.describe("Coy Discover - 390px Mobile Viewport Smoke Test", () => {
   test("C1, C2, C4, F4: Profile card rendered with action buttons, stamps, aria-labels", async ({ page }) => {
     await page.goto("http://localhost:3000/discover");
 
-    // Wait for card stack to appear
+    // Wait for card stack to appear — updated aria-labels to match current ActionButtons
     const passBtn = page.locator('button[aria-label="Pass on profile"]');
-    const likeBtn = page.locator('button[aria-label="Like profile"]');
+    const likeBtn = page.locator('button[aria-label="Add as secret crush"]');
     await expect(passBtn).toBeVisible({ timeout: 10000 });
     await expect(likeBtn).toBeVisible();
 
@@ -47,8 +47,27 @@ test.describe("Coy Discover - 390px Mobile Viewport Smoke Test", () => {
     await expect(passBtn).toBeEnabled();
     await expect(likeBtn).toBeEnabled();
 
+    // Wait for the profile image to finish loading
+    const cardImg = page.locator('article img').first();
+    await expect(cardImg).toBeVisible();
+    await page.waitForLoadState("networkidle").catch(() => {});
+
     // Capture visual snapshot at 390px viewport
     await page.screenshot({ path: "screenshot-390.png" });
+  });
+
+  test("Responsive desktop view (1280px laptop)", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 850 });
+    await page.goto("http://localhost:3000/discover");
+
+    const passBtn = page.locator('button[aria-label="Pass on profile"]');
+    await expect(passBtn).toBeVisible({ timeout: 10000 });
+
+    const cardImg = page.locator('article img').first();
+    await expect(cardImg).toBeVisible();
+    await page.waitForLoadState("networkidle").catch(() => {});
+
+    await page.screenshot({ path: "screenshot-desktop.png" });
   });
 
   test("C5: Client does not use localStorage for swipe history", async ({ page }) => {
@@ -64,7 +83,7 @@ test.describe("Coy Discover - 390px Mobile Viewport Smoke Test", () => {
     await matchesHeaderTab.click();
 
     // Either matches grid or empty state appears
-    const emptyMsg = page.getByText("No matches yet");
+    const emptyMsg = page.getByText("No Matches Yet");
     const matchGrid = page.locator(".grid.grid-cols-2");
     await expect(emptyMsg.or(matchGrid)).toBeVisible({ timeout: 5000 });
   });
@@ -75,7 +94,7 @@ test.describe("Coy Discover - 390px Mobile Viewport Smoke Test", () => {
     // Check if dialog is open (if matched) or verify modal properties
     const dialog = page.locator('div[role="dialog"][aria-modal="true"]');
     if (await dialog.isVisible()) {
-      await expect(page.locator("#match-heading")).toContainText("It's a Match!");
+      await expect(page.locator("#match-heading")).toContainText("IT'S A MATCH!");
       await page.keyboard.press("Escape");
       await expect(dialog).not.toBeVisible();
     }
