@@ -98,7 +98,7 @@ export const CardStack = forwardRef<CardStackRef, CardStackProps>(
     if (!current) return null;
 
     return (
-      <div className="relative w-full h-[520px] flex items-center justify-center">
+      <div className="relative w-full h-[475px] sm:h-[490px] flex items-center justify-center">
         {/* Next card preview behind current */}
         {next && (
           <div
@@ -125,17 +125,17 @@ export const CardStack = forwardRef<CardStackRef, CardStackProps>(
             {/* LIKE Stamp */}
             <motion.div
               style={{ opacity: likeOpacity }}
-              className="absolute top-6 left-6 z-20 -rotate-12 border-4 border-emerald-400 text-emerald-400 px-3 py-1 rounded-xl text-2xl font-black tracking-wider uppercase bg-emerald-950/20 backdrop-blur-xs shadow-lg pointer-events-none"
+              className="absolute top-6 left-6 z-30 -rotate-12 border-[3px] border-black text-black bg-[#22C55E] px-3.5 py-1 rounded-xl text-2xl font-black tracking-wider uppercase shadow-brutal pointer-events-none"
             >
-              LIKE
+              CRUSH!
             </motion.div>
 
             {/* NOPE Stamp */}
             <motion.div
               style={{ opacity: nopeOpacity }}
-              className="absolute top-6 right-6 z-20 rotate-12 border-4 border-rose-500 text-rose-500 px-3 py-1 rounded-xl text-2xl font-black tracking-wider uppercase bg-rose-950/20 backdrop-blur-xs shadow-lg pointer-events-none"
+              className="absolute top-6 right-6 z-30 rotate-12 border-[3px] border-black text-white bg-[#FF2D78] px-3.5 py-1 rounded-xl text-2xl font-black tracking-wider uppercase shadow-brutal pointer-events-none"
             >
-              NOPE
+              PASS
             </motion.div>
           </ProfileCard>
         </motion.div>

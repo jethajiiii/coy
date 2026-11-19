@@ -18,6 +18,34 @@ import {
   ErrorState,
 } from "@/features/discover/components";
 import type { SwipeAction } from "@/features/discover/types";
+import { MessageCircle } from "lucide-react";
+
+function MysteryBanner(): React.JSX.Element {
+  return (
+    <div
+      className="mx-4 mb-3 bg-white border-[2px] border-black rounded-2xl px-3 py-2.5 flex items-center gap-2.5"
+      style={{ boxShadow: "2.5px 2.5px 0px #000" }}
+    >
+      <div
+        className="w-8 h-8 rounded-full bg-coy-yellow border-[2px] border-black flex items-center justify-center shrink-0"
+        style={{ boxShadow: "1.5px 1.5px 0px #000" }}
+      >
+        <MessageCircle size={15} strokeWidth={2.8} className="text-black" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between gap-1">
+          <span className="text-[10px] font-black uppercase tracking-tight text-black">
+            A MESSAGE FROM COY
+          </span>
+          <span className="text-[9px] font-semibold text-neutral-400 shrink-0">now</span>
+        </div>
+        <p className="text-[10.5px] leading-tight text-neutral-600 font-medium truncate">
+          Someone with your number added you as their secret crush...
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function DiscoverPage(): React.JSX.Element {
   const [activeTab, setActiveTab] = useState<"discover" | "matches">("discover");
@@ -71,17 +99,22 @@ export default function DiscoverPage(): React.JSX.Element {
     void refetchMatches();
   }, [clearMatch, refetchMatches]);
 
+  const showBanner = !feedLoading && !feedError && !isEmpty && activeTab === "discover";
+
   return (
-    <div className="flex-1 flex flex-col h-full bg-white relative">
+    <div className="flex-1 flex flex-col h-full bg-[#FAF8F5] relative">
       <DiscoverHeader
         activeTab={activeTab}
         onTabChange={setActiveTab}
         matchesCount={matchesCount}
       />
 
-      <div className="flex-1 flex flex-col p-4 relative overflow-y-auto">
+      {/* Mystery banner */}
+      {showBanner && <MysteryBanner />}
+
+      <div className="flex-1 flex flex-col px-4 pb-2 relative overflow-y-auto">
         {activeTab === "discover" ? (
-          <div className="flex-1 flex flex-col justify-between items-center max-w-sm mx-auto w-full">
+          <div className="flex-1 flex flex-col justify-between items-center w-full">
             <div className="w-full flex-1 flex items-center justify-center relative">
               {feedLoading ? (
                 <SkeletonCard />
@@ -100,11 +133,11 @@ export default function DiscoverPage(): React.JSX.Element {
               )}
             </div>
 
-            {/* Floating Action Controls */}
+            {/* Action Controls */}
             {!feedLoading && !feedError && !isEmpty && (
               <div className="w-full shrink-0">
                 {swipeError && (
-                  <p className="text-center text-xs text-rose-500 font-medium pb-1">
+                  <p className="text-center text-xs font-bold text-coy-pink pb-1">
                     {swipeError}
                   </p>
                 )}
@@ -120,7 +153,7 @@ export default function DiscoverPage(): React.JSX.Element {
         )}
       </div>
 
-      {/* Mutual Match Modal Overlay */}
+      {/* Mutual Match Modal */}
       <MatchOverlay
         matchedProfile={latestMatch}
         onKeepSwiping={clearMatch}

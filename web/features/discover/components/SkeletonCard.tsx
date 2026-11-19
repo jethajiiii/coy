@@ -7,29 +7,41 @@ export function SkeletonCard(): React.JSX.Element {
     <div
       role="status"
       aria-label="Loading profiles"
-      className="relative w-full h-[520px] rounded-3xl bg-neutral-100 border border-neutral-200/60 shadow-md overflow-hidden flex flex-col animate-pulse"
+      className="relative w-full h-[475px] rounded-3xl bg-white border-[2.5px] border-black overflow-hidden flex flex-col"
+      style={{ boxShadow: "4px 4px 0px #000" }}
     >
-      {/* Photo Area Skeleton */}
-      <div className="w-full h-[360px] bg-neutral-200 relative">
-        <div className="absolute bottom-4 left-5 space-y-2">
-          <div className="h-6 w-36 bg-neutral-300 rounded-md" />
-          <div className="h-4 w-24 bg-neutral-300/80 rounded-md" />
+      {/* Photo skeleton */}
+      <div className="p-2.5 pb-0">
+        <div className="relative h-[230px] w-full border-[2px] border-black rounded-2xl overflow-hidden">
+          <div className="w-full h-full skeleton-shimmer" />
         </div>
       </div>
 
-      {/* Bio & Interest Chips Skeleton */}
-      <div className="flex-1 p-5 flex flex-col justify-between bg-white">
-        <div className="space-y-2">
-          <div className="h-3.5 w-full bg-neutral-200 rounded" />
-          <div className="h-3.5 w-4/5 bg-neutral-200 rounded" />
+      {/* Content skeleton */}
+      <div className="p-3.5 flex flex-col gap-3 flex-1">
+        {/* Location chip */}
+        <div className="h-5 w-28 rounded-full border-[1.5px] border-black skeleton-shimmer" />
+
+        {/* Bio lines */}
+        <div className="border-l-[2.5px] border-coy-pink pl-2 space-y-1.5">
+          <div className="h-3 w-full rounded skeleton-shimmer" />
+          <div className="h-3 w-4/5 rounded skeleton-shimmer" />
+          <div className="h-3 w-3/5 rounded skeleton-shimmer" />
         </div>
 
-        <div className="flex gap-2">
-          <div className="h-6 w-20 bg-neutral-200 rounded-full" />
-          <div className="h-6 w-16 bg-neutral-200 rounded-full" />
-          <div className="h-6 w-24 bg-neutral-200 rounded-full" />
+        {/* Interest chips */}
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          {[64, 48, 80, 56].map((w) => (
+            <div
+              key={w}
+              className="h-5 rounded-full border-[1.5px] border-black skeleton-shimmer"
+              style={{ width: w }}
+            />
+          ))}
         </div>
       </div>
+
+      <span className="sr-only">Loading profile cards…</span>
     </div>
   );
 }

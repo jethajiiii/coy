@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { X, Heart } from "lucide-react";
+import { X, Heart, Star } from "lucide-react";
 import type { SwipeAction } from "../types";
 
 interface ActionButtonsProps {
@@ -14,36 +14,39 @@ export function ActionButtons({
   disabled = false,
 }: ActionButtonsProps): React.JSX.Element {
   return (
-    <div className="flex items-center justify-center gap-6 py-4">
-      {/* Pass / Nope Button */}
+    <div className="flex items-center justify-center gap-3.5 my-auto py-2">
+      {/* Pass Button */}
       <button
         type="button"
         disabled={disabled}
         onClick={() => onSwipe("PASS")}
         aria-label="Pass on profile"
-        className="group relative w-16 h-16 rounded-full bg-white border border-neutral-200/80 shadow-md flex items-center justify-center text-neutral-400 hover:text-rose-500 hover:border-rose-300 hover:shadow-lg active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2"
+        className="w-12 h-12 rounded-full bg-white border-[2.5px] border-black flex items-center justify-center text-black shadow-brutal brutal-btn hover:bg-neutral-50 disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
       >
-        <X
-          size={30}
-          strokeWidth={2.6}
-          className="transition-transform group-hover:scale-110"
-        />
+        <X size={24} strokeWidth={3} />
       </button>
 
-      {/* Like Button */}
+      {/* Signature 'Add as crush' Hot Pink CTA Button */}
       <button
         type="button"
         disabled={disabled}
         onClick={() => onSwipe("LIKE")}
-        aria-label="Like profile"
-        className="group relative w-16 h-16 rounded-full bg-gradient-to-tr from-rose-500 to-rose-400 text-white shadow-rose-200 shadow-lg flex items-center justify-center hover:from-rose-600 hover:to-rose-500 hover:shadow-xl active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2"
+        aria-label="Add as secret crush"
+        className="flex-1 max-w-[210px] h-12 py-2.5 px-4 rounded-full bg-[#FF2D78] hover:bg-[#e61965] border-[2.5px] border-black flex items-center justify-center gap-2 text-white shadow-brutal brutal-btn font-black text-xs uppercase tracking-wide transition-all disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
       >
-        <Heart
-          size={30}
-          strokeWidth={2.6}
-          fill="currentColor"
-          className="transition-transform group-hover:scale-110"
-        />
+        <Heart size={18} strokeWidth={2.5} fill="white" className="text-white" />
+        <span>Add as crush</span>
+      </button>
+
+      {/* Star / Instant Crush Button */}
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => onSwipe("LIKE")}
+        aria-label="Save for later or super crush"
+        className="w-12 h-12 rounded-full bg-coy-yellow border-[2.5px] border-black flex items-center justify-center text-black shadow-brutal brutal-btn hover:bg-[#ffe36e] disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+      >
+        <Star size={22} strokeWidth={2.5} fill="black" className="text-black" />
       </button>
     </div>
   );

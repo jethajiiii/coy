@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { MapPin } from "lucide-react";
 import type { PublicProfile } from "../types";
 
 interface ProfileCardProps {
@@ -24,60 +25,83 @@ export function ProfileCard({
   const [hasImageError, setHasImageError] = useState(false);
 
   return (
-    <div className="relative w-full h-[520px] rounded-3xl bg-white shadow-xl overflow-hidden flex flex-col border border-neutral-100 select-none">
-      {/* Photo Container or Initials Fallback */}
-      <div className="relative w-full h-[360px] bg-neutral-200 overflow-hidden">
-        {!hasImageError ? (
-          <Image
-            src={profile.photoUrl}
-            alt={profile.name}
-            fill
-            sizes="(max-width: 448px) 100vw, 448px"
-            className="object-cover pointer-events-none"
-            priority
-            onError={() => setHasImageError(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-rose-400 to-orange-300 text-white font-bold text-6xl">
-            {getInitials(profile.name)}
+    <article className="bg-white border-[2.5px] border-black rounded-3xl overflow-hidden shadow-brutal flex flex-col relative w-full h-[475px] sm:h-[490px] select-none">
+      {/* Top Status Sticker: Privacy Tag */}
+      <div className="absolute top-4 right-4 z-20 bg-coy-yellow border-[2px] border-black font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-tight shadow-brutal-xs rotate-2 flex items-center gap-1.5 pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+        <span>MUTUAL ONLY</span>
+      </div>
+
+      {/* Overlaid Stamps (LIKE / NOPE from CardStack) */}
+      {children}
+
+      {/* Photo Section with Neobrutalist Inner Frame */}
+      <div className="p-2.5 pb-0 bg-white">
+        <div className="relative h-[230px] sm:h-[245px] w-full border-[2px] border-black rounded-2xl overflow-hidden bg-amber-50">
+          {!hasImageError ? (
+            <Image
+              src={profile.photoUrl}
+              alt={profile.name}
+              fill
+              sizes="(max-width: 448px) 100vw, 448px"
+              className="object-cover pointer-events-none"
+              priority
+              onError={() => setHasImageError(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-coy-yellow text-black font-black text-6xl">
+              {getInitials(profile.name)}
+            </div>
+          )}
+
+          {/* Bottom Name Ribbon Overlay */}
+          <div className="absolute bottom-2.5 left-2.5 z-10 pointer-events-none">
+            <div className="bg-black text-white px-3 py-1 rounded-xl border-[2px] border-black shadow-brutal-xs flex items-center gap-1.5">
+              <span className="text-xs font-black tracking-tight uppercase text-white">
+                {profile.name}
+              </span>
+              <span className="text-coy-yellow text-xs font-black">
+                , {profile.age}
+              </span>
+            </div>
           </div>
-        )}
-
-        {/* Gradient shadow for text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
-
-        {/* Overlaid Stamps (LIKE / NOPE) */}
-        {children}
-
-        {/* Primary Name, Age & Location on Image Bottom */}
-        <div className="absolute bottom-4 inset-x-5 text-white pointer-events-none">
-          <h2 className="text-2xl font-bold tracking-tight drop-shadow-md">
-            {profile.name},{" "}
-            <span className="font-semibold">{profile.age}</span>
-          </h2>
-          <p className="text-sm text-neutral-200 font-medium drop-shadow-sm flex items-center gap-1 mt-0.5">
-            <span>📍</span> {profile.city}
-          </p>
         </div>
       </div>
 
-      {/* Details Container: Bio & Interest Chips */}
-      <div className="flex-1 p-5 flex flex-col justify-between overflow-hidden bg-white">
-        <p className="text-xs sm:text-sm text-neutral-700 leading-snug line-clamp-3 font-normal">
+      {/* Bio & Profile Details */}
+      <div className="p-3.5 flex flex-col justify-between flex-1 bg-white gap-2">
+        {/* Campus Location Badge */}
+        <div className="flex items-center">
+          <span className="inline-flex items-center gap-1 bg-[#FAF8F5] text-black border-[1.5px] border-black px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-tight shadow-brutal-xs uppercase">
+            <MapPin size={11} strokeWidth={2.8} />
+            <span>{profile.city}</span>
+          </span>
+        </div>
+
+        {/* Bio Description with Hot Pink Accent Bar */}
+        <p className="text-[11.5px] leading-snug font-medium text-neutral-800 border-l-[2.5px] border-[#FF2D78] pl-2 py-0.5 line-clamp-3">
           {profile.bio}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 pt-2">
-          {profile.interests.map((tag) => (
-            <span
-              key={tag}
-              className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-neutral-100 text-neutral-700 border border-neutral-200/60"
-            >
-              {tag}
-            </span>
-          ))}
+        {/* Neobrutalist Interest Chips */}
+        <div className="flex flex-wrap gap-1.5 pt-0.5">
+          {profile.interests.map((tag, i) => {
+            const isLast = i === profile.interests.length - 1;
+            return (
+              <span
+                key={tag}
+                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9.5px] font-black border-[1.5px] border-black shadow-brutal-xs uppercase ${
+                  isLast
+                    ? "bg-coy-yellow text-black -rotate-1"
+                    : "bg-white text-black"
+                }`}
+              >
+                {tag}
+              </span>
+            );
+          })}
         </div>
       </div>
-    </div>
+    </article>
   );
 }

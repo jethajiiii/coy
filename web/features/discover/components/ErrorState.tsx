@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { AlertCircle, RotateCcw } from "lucide-react";
+import { AlertTriangle, RotateCcw } from "lucide-react";
 
 interface ErrorStateProps {
   message: string;
@@ -13,25 +13,40 @@ export function ErrorState({
   onRetry,
 }: ErrorStateProps): React.JSX.Element {
   return (
-    <div className="w-full h-[520px] rounded-3xl bg-rose-50/50 border border-rose-200/60 p-8 flex flex-col items-center justify-center text-center">
-      <div className="w-14 h-14 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center mb-4">
-        <AlertCircle size={28} strokeWidth={2.2} />
+    <div
+      className="w-full h-[475px] rounded-3xl bg-[#FAF8F5] border-[2.5px] border-black flex flex-col items-center justify-center text-center p-8"
+      style={{ boxShadow: "4px 4px 0px #000" }}
+    >
+      {/* Icon */}
+      <div
+        className="w-20 h-20 rounded-3xl bg-coy-pink border-[2.5px] border-black flex items-center justify-center mb-5 -rotate-2"
+        style={{ boxShadow: "4px 4px 0px #000" }}
+      >
+        <AlertTriangle size={36} strokeWidth={2} className="text-white" />
       </div>
 
-      <h3 className="text-base font-bold text-neutral-800">
-        Unable to load profiles
+      <h3
+        className="text-2xl font-black text-black uppercase tracking-tight leading-tight mb-2"
+        style={{ fontFamily: "var(--font-grotesk, sans-serif)" }}
+      >
+        OH NO!
+        <br />
+        SOMETHING
+        <br />
+        BROKE
       </h3>
-      <p className="text-xs text-neutral-500 max-w-xs mt-1.5 mb-6">
+      <p className="text-[11px] font-semibold text-neutral-500 max-w-[220px] mb-7 leading-relaxed">
         {message}
       </p>
 
       <button
         type="button"
         onClick={onRetry}
-        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-rose-500 text-white text-xs font-semibold shadow-md hover:bg-rose-600 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2"
+        className="brutal-btn inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-coy-yellow border-[2.5px] border-black text-black font-black text-xs uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+        style={{ boxShadow: "4px 4px 0px #000" }}
       >
-        <RotateCcw size={15} strokeWidth={2.2} />
-        <span>Try Again</span>
+        <RotateCcw size={15} strokeWidth={2.5} />
+        <span>TRY AGAIN</span>
       </button>
     </div>
   );

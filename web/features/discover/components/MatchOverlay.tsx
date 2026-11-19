@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Heart, Flame } from "lucide-react";
 import type { PublicProfile } from "../types";
 
 interface MatchOverlayProps {
@@ -13,44 +13,47 @@ interface MatchOverlayProps {
   onViewMatches: () => void;
 }
 
-export function MatchOverlay({
-  matchedProfile,
-  currentUserPhotoUrl = "https://randomuser.me/api/portraits/lego/1.jpg",
-  onKeepSwiping,
-  onViewMatches,
-}: MatchOverlayProps): React.JSX.Element | null {
-  const modalRef = useRef<HTMLDivElement>(null);
+function useModalFocus(
+  active: boolean,
+  onEscape: () => void
+): React.RefObject<HTMLDivElement | null> {
+  const modalRef = React.useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (!matchedProfile) return;
+  React.useEffect(() => {
+    if (!active) return;
+
+    const firstBtn = modalRef.current?.querySelector<HTMLButtonElement>("button");
+    firstBtn?.focus();
 
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        onKeepSwiping();
-        return;
-      }
+      if (e.key === "Escape") { onEscape(); return; }
       if (e.key === "Tab" && modalRef.current) {
         const focusable = modalRef.current.querySelectorAll<HTMLElement>("button");
         if (focusable.length === 0) return;
         const first = focusable[0]!;
         const last = focusable[focusable.length - 1]!;
-
         if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
+          e.preventDefault(); last.focus();
         } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
+          e.preventDefault(); first.focus();
         }
       }
     }
 
-    const firstBtn = modalRef.current?.querySelector<HTMLButtonElement>("button");
-    firstBtn?.focus();
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [matchedProfile, onKeepSwiping]);
+  }, [active, onEscape]);
+
+  return modalRef;
+}
+
+export function MatchOverlay({
+  matchedProfile,
+  currentUserPhotoUrl = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&q=80",
+  onKeepSwiping,
+  onViewMatches,
+}: MatchOverlayProps): React.JSX.Element | null {
+  const modalRef = useModalFocus(!!matchedProfile, onKeepSwiping);
 
   if (!matchedProfile) return null;
 
@@ -64,51 +67,67 @@ export function MatchOverlay({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-md"
+        className="absolute inset-0 z-50 flex items-center justify-center p-5"
+        style={{ background: "rgba(0,0,0,0.88)" }}
       >
         <motion.div
-          initial={{ scale: 0.8, opacity: 0, y: 20 }}
+          initial={{ scale: 0.75, opacity: 0, y: 24 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.8, opacity: 0, y: 20 }}
-          transition={{ type: "spring", stiffness: 350, damping: 25 }}
-          className="w-full max-w-sm rounded-3xl bg-white p-7 text-center shadow-2xl flex flex-col items-center border border-rose-100"
+          exit={{ scale: 0.75, opacity: 0, y: 24 }}
+          transition={{ type: "spring", stiffness: 400, damping: 28 }}
+          className="w-full max-w-xs bg-[#FAF8F5] border-[3px] border-black rounded-3xl p-6 flex flex-col items-center text-center"
+          style={{ boxShadow: "8px 8px 0px #000" }}
         >
-          <div className="w-12 h-12 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center mb-3">
-            <Sparkles size={24} strokeWidth={2.5} />
+          {/* Header Icon */}
+          <div
+            className="w-14 h-14 rounded-2xl bg-coy-pink border-[2.5px] border-black flex items-center justify-center mb-4"
+            style={{ boxShadow: "3px 3px 0px #000" }}
+          >
+            <Flame size={28} strokeWidth={2.5} className="text-white" fill="white" />
           </div>
 
           <h2
             id="match-heading"
-            className="text-3xl font-black tracking-tight text-neutral-900 bg-gradient-to-r from-rose-500 to-rose-600 bg-clip-text text-transparent"
+            className="text-3xl font-black tracking-tight text-black uppercase leading-none mb-1"
+            style={{ fontFamily: "var(--font-grotesk, 'Space Grotesk', sans-serif)" }}
           >
-            It&apos;s a Match!
+            IT&apos;S A MATCH! 💥
           </h2>
-          <p className="text-xs text-neutral-500 mt-1 mb-6">
-            You and <span className="font-semibold text-neutral-800">{matchedProfile.name}</span> liked each other.
+          <p className="text-[11px] font-semibold text-neutral-600 mb-5">
+            You and <span className="font-black text-black">{matchedProfile.name}</span> both liked each other.
           </p>
 
           {/* Dual Avatars */}
-          <div className="relative flex items-center justify-center mb-8 w-full">
-            <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl -mr-4 z-10">
+          <div className="flex items-center justify-center gap-0 mb-6">
+            <div
+              className="relative w-20 h-20 rounded-2xl overflow-hidden border-[2.5px] border-black"
+              style={{ boxShadow: "3px 3px 0px #000", zIndex: 1 }}
+            >
               <Image
                 src={currentUserPhotoUrl}
                 alt="Your avatar"
                 fill
-                sizes="96px"
+                sizes="80px"
                 className="object-cover"
               />
             </div>
 
-            <div className="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-md z-30 -mx-3 border-2 border-white">
-              <Heart size={20} strokeWidth={2.5} fill="currentColor" />
+            <div
+              className="relative z-10 w-10 h-10 rounded-full bg-coy-yellow border-[2.5px] border-black flex items-center justify-center -mx-2"
+              style={{ boxShadow: "2px 2px 0px #000" }}
+            >
+              <Heart size={18} strokeWidth={2.5} fill="black" className="text-black" />
             </div>
 
-            <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl -ml-4 z-10">
+            <div
+              className="relative w-20 h-20 rounded-2xl overflow-hidden border-[2.5px] border-black"
+              style={{ boxShadow: "3px 3px 0px #000", zIndex: 1 }}
+            >
               <Image
                 src={matchedProfile.photoUrl}
                 alt={matchedProfile.name}
                 fill
-                sizes="96px"
+                sizes="80px"
                 className="object-cover"
               />
             </div>
@@ -119,17 +138,19 @@ export function MatchOverlay({
             <button
               type="button"
               onClick={onViewMatches}
-              className="w-full py-3.5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs shadow-lg shadow-rose-200 active:scale-98 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2"
+              className="brutal-btn w-full py-3.5 rounded-2xl bg-coy-pink border-[2.5px] border-black text-white font-black text-xs uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+              style={{ boxShadow: "4px 4px 0px #000" }}
             >
-              View Matches
+              VIEW MATCHES
             </button>
 
             <button
               type="button"
               onClick={onKeepSwiping}
-              className="w-full py-3 rounded-2xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium text-xs active:scale-98 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+              className="brutal-btn w-full py-3 rounded-2xl bg-white border-[2.5px] border-black text-black font-black text-xs uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+              style={{ boxShadow: "3px 3px 0px #000" }}
             >
-              Keep Swiping
+              KEEP SWIPING
             </button>
           </div>
         </motion.div>

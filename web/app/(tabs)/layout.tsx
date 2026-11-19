@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Compass } from "lucide-react";
+import { Compass, MessageCircle } from "lucide-react";
 import React from "react";
 
 const NAV_ITEMS = [
-  { href: "/home", label: "Home", Icon: Home },
   { href: "/discover", label: "Discover", Icon: Compass },
+  { href: "/home", label: "Matches", Icon: MessageCircle },
 ] as const;
 
 export default function TabsLayout({
@@ -18,17 +18,28 @@ export default function TabsLayout({
   const pathname = usePathname();
 
   return (
-    <div className="min-h-dvh h-dvh flex flex-col items-center justify-center bg-neutral-100 antialiased selection:bg-rose-100 selection:text-rose-600">
-      <div className="w-full max-w-md h-full flex flex-col bg-white shadow-2xl relative overflow-hidden">
-        {/* Main scrollable view area with clearance for the bottom bar */}
-        <main className="flex-1 flex flex-col overflow-y-auto pb-20">
+    <div className="min-h-dvh h-dvh flex flex-col items-center justify-center bg-zinc-900 sm:p-6 select-none antialiased">
+      {/* Phone frame on desktop; full viewport on mobile */}
+      <div
+        className="w-full max-w-[390px] h-full sm:h-[844px] sm:max-h-[94dvh] bg-[#FAF8F5] sm:border-[3px] sm:border-black sm:rounded-[42px] overflow-hidden flex flex-col relative"
+        style={{ boxShadow: "0 0 0 0px transparent" }}
+      >
+        {/* Inner shadow on desktop */}
+        <div
+          className="hidden sm:block absolute inset-0 pointer-events-none rounded-[42px] border-[3px] border-black"
+          style={{ boxShadow: "8px 8px 0px #000000", zIndex: 50 }}
+          aria-hidden="true"
+        />
+
+        {/* Main scrollable content */}
+        <main className="flex-1 flex flex-col overflow-y-auto pb-16 bg-[#FAF8F5]">
           {children}
         </main>
 
-        {/* Fixed bottom navigation bar with safe-area padding */}
+        {/* Fixed Neobrutalist Bottom Nav */}
         <nav
           aria-label="Primary navigation"
-          className="absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-neutral-200/80 px-8 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] z-40 flex items-center justify-around"
+          className="absolute bottom-0 inset-x-0 bg-white border-t-[2.5px] border-black px-10 py-2 z-40 flex items-center justify-around"
         >
           {NAV_ITEMS.map(({ href, label, Icon }) => {
             const isActive = pathname.startsWith(href);
@@ -36,18 +47,26 @@ export default function TabsLayout({
               <Link
                 key={href}
                 href={href}
-                className={`flex flex-col items-center gap-1 transition-all duration-200 px-4 py-1 rounded-xl ${
-                  isActive
-                    ? "text-rose-500 font-semibold scale-105"
-                    : "text-neutral-400 hover:text-neutral-600 font-medium"
-                }`}
+                className="flex flex-col items-center gap-0.5 group brutal-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-xl"
+                aria-current={isActive ? "page" : undefined}
               >
-                <Icon
-                  size={24}
-                  strokeWidth={isActive ? 2.5 : 1.8}
-                  className="transition-transform"
-                />
-                <span className="text-[11px] tracking-tight">{label}</span>
+                <div
+                  className={`w-10 h-10 border-[2px] border-black rounded-xl flex items-center justify-center transition-colors ${
+                    isActive
+                      ? "bg-coy-yellow text-black"
+                      : "bg-white text-neutral-500 group-hover:bg-neutral-100"
+                  }`}
+                  style={isActive ? { boxShadow: "2px 2px 0px #000" } : {}}
+                >
+                  <Icon size={20} strokeWidth={2.5} />
+                </div>
+                <span
+                  className={`text-[9px] uppercase tracking-tight font-black ${
+                    isActive ? "text-black" : "text-neutral-400 group-hover:text-black"
+                  }`}
+                >
+                  {label}
+                </span>
               </Link>
             );
           })}
