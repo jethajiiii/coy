@@ -5,6 +5,7 @@ export { ActionButtons } from "./ActionButtons";
 export { DiscoverHeader } from "./DiscoverHeader";
 export { MysteryBanner } from "./MysteryBanner";
 export { MatchOverlay } from "./MatchOverlay";
+export { DualMatchCards } from "./DualMatchCards";
 export { MatchesGrid } from "./MatchesGrid";
 export { EmptyState } from "./EmptyState";
 export { SkeletonCard } from "./SkeletonCard";

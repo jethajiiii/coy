@@ -124,6 +124,7 @@ export default function DiscoverPage(): React.JSX.Element {
 
       <MatchOverlay
         matchedProfile={latestMatch}
+        matchesCount={matchesCount}
         onKeepSwiping={clearMatch}
         onViewMatches={handleViewMatchesFromOverlay}
       />
