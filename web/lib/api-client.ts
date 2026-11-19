@@ -12,7 +12,7 @@ export class ApiError extends Error {
 }
 
 const BASE_URL =
-  process.env["NEXT_PUBLIC_API_URL"] ?? "http://localhost:4000";
+  process.env["NEXT_PUBLIC_API_URL"] || "/api/backend";
 
 interface RequestOptions extends Omit<RequestInit, "body"> {
   body?: unknown;
