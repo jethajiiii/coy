@@ -3,6 +3,7 @@ export { CardStack } from "./CardStack";
 export type { CardStackRef } from "./CardStack";
 export { ActionButtons } from "./ActionButtons";
 export { DiscoverHeader } from "./DiscoverHeader";
+export { MysteryBanner } from "./MysteryBanner";
 export { MatchOverlay } from "./MatchOverlay";
 export { MatchesGrid } from "./MatchesGrid";
 export { EmptyState } from "./EmptyState";
