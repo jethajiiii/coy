@@ -1,0 +1,72 @@
+// Prisma 6 – PostgreSQL on Neon
+// NO "likesMe" column anywhere; inbound likes are Swipe rows only.
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum SwipeAction {
+  LIKE
+  PASS
+}
+
+// ─── Models ───────────────────────────────────────────────────────────────────
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  age           Int
+  photoUrl      String
+  bio           String
+  city          String   // city or college name
+  interests     String[]
+  isCurrentUser Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  swipesGiven    Swipe[] @relation("SwipeFrom")
+  swipesReceived Swipe[] @relation("SwipeTo")
+  matchesAsA     Match[] @relation("MatchUserA")
+  matchesAsB     Match[] @relation("MatchUserB")
+}
+
+model Swipe {
+  id         String      @id @default(cuid())
+  fromUserId String
+  toUserId   String
+  action     SwipeAction
+  createdAt  DateTime    @default(now())
+
+  from User @relation("SwipeFrom", fields: [fromUserId], references: [id])
+  to   User @relation("SwipeTo",   fields: [toUserId],   references: [id])
+
+  // One swipe per (actor, target) pair — prevents duplicate swipes
+  @@unique([fromUserId, toUserId])
+
+  // Speeds up feed query: "which profiles has this user already swiped on?"
+  @@index([fromUserId])
+
+  // Speeds up mutual-like check: "who has swiped on this user?"
+  @@index([toUserId])
+}
+
+model Match {
+  id      String   @id @default(cuid())
+  userAId String
+  userBId String
+  // userAId < userBId always (enforced in service layer before insert)
+  // This unique constraint guarantees exactly one row per pair
+  createdAt DateTime @default(now())
+
+  userA User @relation("MatchUserA", fields: [userAId], references: [id])
+  userB User @relation("MatchUserB", fields: [userBId], references: [id])
+
+  @@unique([userAId, userBId])
+}
