@@ -4,7 +4,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Simran Gill",
     age: 23,
-    photoUrl: "https://randomuser.me/api/portraits/women/25.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=800&q=80",
     bio: "Agritech researcher working on vertical farming. Let us talk about microgreens and climate tech.",
     city: "PAU Ludhiana",
     interests: ["Hiking", "Yoga", "Chai & Samosas"],
@@ -13,7 +13,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Gaurav Malhotra",
     age: 27,
-    photoUrl: "https://randomuser.me/api/portraits/men/26.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
     bio: "Venture debt analyst. Passionate about badminton tournaments and sourdough focaccia.",
     city: "Mumbai, MH",
     interests: ["Badminton", "Baking", "Cricket"],
@@ -22,7 +22,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Tara Srinivasan",
     age: 21,
-    photoUrl: "https://randomuser.me/api/portraits/women/27.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
     bio: "Marine biology student at CUSAT. Scuba certified, searching for bioluminescent plankton.",
     city: "Kochi, KL",
     interests: ["Hiking", "Film Photography", "Astrophotography"],
@@ -31,7 +31,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Naveen Choudhury",
     age: 24,
-    photoUrl: "https://randomuser.me/api/portraits/men/28.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=80",
     bio: "Game designer working on pixel art RPGs. Huge fan of Studio Ghibli soundscapes.",
     city: "IIT Guwahati",
     interests: ["Anime", "Board Games", "Indie Rock"],
@@ -40,7 +40,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Alia Merchant",
     age: 23,
-    photoUrl: "https://randomuser.me/api/portraits/women/29.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42?auto=format&fit=crop&w=800&q=80",
     bio: "Sustainable fashion designer. Upcycling vintage sarees into modern trench coats.",
     city: "NIFT Mumbai",
     interests: ["Thrifting", "Pottery", "Film Photography"],
@@ -49,7 +49,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Sameer Kazi",
     age: 26,
-    photoUrl: "https://randomuser.me/api/portraits/men/30.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?auto=format&fit=crop&w=800&q=80",
     bio: "Sound engineer working on indie podcasts. Always carrying my field microphone.",
     city: "Pune, MH",
     interests: ["Classical Music", "Indie Rock", "Chai & Samosas"],
@@ -58,7 +58,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Radhika Mathur",
     age: 22,
-    photoUrl: "https://randomuser.me/api/portraits/women/31.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1560787313-5dff3307e257?auto=format&fit=crop&w=800&q=80",
     bio: "Wildlife conservationist. Spending weekends birdwatching at Keoladeo sanctuary.",
     city: "Jaipur, RJ",
     interests: ["Hiking", "Film Photography", "Yoga"],
@@ -67,7 +67,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Pranav Dixit",
     age: 25,
-    photoUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=800&q=80",
     bio: "Cybersecurity analyst. When not bug hunting, I make cold brew and play blitz chess.",
     city: "Indore, MP",
     interests: ["Board Games", "Filter Coffee", "Bouldering"],
@@ -76,7 +76,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Zoya Farooqui",
     age: 24,
-    photoUrl: "https://randomuser.me/api/portraits/women/33.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=80",
     bio: "Culinary artist experimenting with Awadhi fusion. I measure ingredients with my heart.",
     city: "Lucknow, UP",
     interests: ["Street Food", "Baking", "Chai & Samosas"],
@@ -85,7 +85,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Harshavardhan Rao",
     age: 28,
-    photoUrl: "https://randomuser.me/api/portraits/men/34.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
     bio: "Astrophysicist doing radio astronomy at NCRA. Looking at galaxies 10 billion years old.",
     city: "NCRA Pune",
     interests: ["Astrophotography", "Classical Music", "Reading Fiction"],
@@ -94,7 +94,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Kritika Soni",
     age: 20,
-    photoUrl: "https://randomuser.me/api/portraits/women/35.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
     bio: "Math & statistics undergrad at ISI. Loves logic puzzles, bouldering, and dark chocolate.",
     city: "ISI Kolkata",
     interests: ["Board Games", "Bouldering", "Reading Fiction"],
@@ -103,7 +103,7 @@ export const batch3: SeedProfile[] = [
   {
     name: "Devrat Patwardhan",
     age: 26,
-    photoUrl: "https://randomuser.me/api/portraits/men/36.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=800&q=80",
     bio: "Restoration architect working on Maratha forts. Weekend trail runner and Marathi theatre fan.",
     city: "Pune, MH",
     interests: ["Hiking", "Poetry", "Film Photography"],

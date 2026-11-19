@@ -4,7 +4,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Ananya Pillai",
     age: 21,
-    photoUrl: "https://randomuser.me/api/portraits/women/13.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
     bio: "Psychology student exploring art therapy. Lover of monsoon showers and indie bookstores.",
     city: "St. Xavier's Mumbai",
     interests: ["Yoga", "Reading Fiction", "Pottery", "Indie Rock", "Film Photography"],
@@ -13,7 +13,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Varun Kapoor",
     age: 26,
-    photoUrl: "https://randomuser.me/api/portraits/men/14.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80",
     bio: "Product analyst at Swiggy. Trying to find the best mutton biryani in Bangalore.",
     city: "Bangalore, KA",
     interests: ["Street Food", "Badminton", "Cricket"],
@@ -22,7 +22,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Sneha Bannerjee",
     age: 25,
-    photoUrl: "https://randomuser.me/api/portraits/women/15.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=800&q=80",
     bio: "Curator at an art gallery. I can spend 4 hours in front of a single painting without getting bored.",
     city: "New Delhi, DL",
     interests: ["Classical Music", "Reading Fiction", "Poetry"],
@@ -31,7 +31,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Siddharth Rao",
     age: 24,
-    photoUrl: "https://randomuser.me/api/portraits/men/16.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=800&q=80",
     bio: "Sports journalist covering Ranji Trophy. Left-arm orthodox spinner when my knees allow it.",
     city: "Chennai, TN",
     interests: ["Cricket", "Filter Coffee", "Badminton"],
@@ -40,7 +40,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Diya Ghosh",
     age: 22,
-    photoUrl: "https://randomuser.me/api/portraits/women/17.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=800&q=80",
     bio: "Sociology researcher. Collecting old stamps, postcards, and recipes passed down oral history.",
     city: "Presidency University",
     interests: ["Chai & Samosas", "Reading Fiction", "Film Photography"],
@@ -49,7 +49,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Karan Singhal",
     age: 27,
-    photoUrl: "https://randomuser.me/api/portraits/men/18.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=800&q=80",
     bio: "Clean tech founder. Passionate about solar microgrids and weekend gravel cycling.",
     city: "Gurugram, HR",
     interests: ["Hiking", "Bouldering", "Filter Coffee"],
@@ -58,7 +58,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Pooja Hegde",
     age: 23,
-    photoUrl: "https://randomuser.me/api/portraits/women/19.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
     bio: "Graphic designer at an indie publishing press. Typography geek and amateur roller skater.",
     city: "NID Ahmedabad",
     interests: ["Thrifting", "Pottery", "Indie Rock"],
@@ -67,7 +67,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Manish Agarwal",
     age: 25,
-    photoUrl: "https://randomuser.me/api/portraits/men/20.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?auto=format&fit=crop&w=800&q=80",
     bio: "Passionate urban planner researching pedestrian-first streets across Asian megacities. I believe walkable neighborhoods make happier humans. When not sketching public plazas, you will find me brewing specialty pour-overs or browsing second-hand book stalls on Daryaganj pavement.",
     city: "CEPT Ahmedabad",
     interests: ["Filter Coffee", "Reading Fiction", "Street Food", "Hiking"],
@@ -76,7 +76,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Bhavna Bhatt",
     age: 24,
-    photoUrl: "https://randomuser.me/api/portraits/women/21.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
     bio: "Law clerk at High Court. High caffeine tolerance, low tolerance for bad typography.",
     city: "ILSC Pune",
     interests: ["Filter Coffee", "Stand-up Comedy", "Badminton"],
@@ -85,7 +85,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Tushar Saxena",
     age: 26,
-    photoUrl: "https://randomuser.me/api/portraits/men/22.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1513956589380-bad6acb9b9d4?auto=format&fit=crop&w=800&q=80",
     bio: "Robotics engineer. Building quadrupeds and trying to teach them to fetch tennis balls.",
     city: "IIT Kanpur",
     interests: ["Board Games", "Anime", "Bouldering"],
@@ -94,7 +94,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Kavya Murthy",
     age: 22,
-    photoUrl: "https://randomuser.me/api/portraits/women/23.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=800&q=80",
     bio: "Classical vocalist & tabla student. Blending raga scales with lo-fi beats in Ableton.",
     city: "Bangalore University",
     interests: ["Classical Music", "Yoga", "Poetry"],
@@ -103,7 +103,7 @@ export const batch2: SeedProfile[] = [
   {
     name: "Aman Tandon",
     age: 25,
-    photoUrl: "https://randomuser.me/api/portraits/men/24.jpg",
+    photoUrl: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=800&q=80",
     bio: "Brand strategist. I notice packaging flaws at grocery stores and rank stationery.",
     city: "MICA Ahmedabad",
     interests: ["Thrifting", "Indie Rock", "Stand-up Comedy"],
