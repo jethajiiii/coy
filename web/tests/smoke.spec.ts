@@ -46,6 +46,9 @@ test.describe("Coy Discover - 390px Mobile Viewport Smoke Test", () => {
     // Action buttons visible and interactive
     await expect(passBtn).toBeEnabled();
     await expect(likeBtn).toBeEnabled();
+
+    // Capture visual snapshot at 390px viewport
+    await page.screenshot({ path: "screenshot-390.png" });
   });
 
   test("C5: Client does not use localStorage for swipe history", async ({ page }) => {
