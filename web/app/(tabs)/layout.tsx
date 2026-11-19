@@ -16,6 +16,7 @@ export default function TabsLayout({
   children: React.ReactNode;
 }): React.JSX.Element {
   const pathname = usePathname();
+  const isHome = pathname.startsWith("/home");
 
   return (
     <div className="min-h-dvh h-dvh flex flex-col items-center justify-center bg-zinc-900 sm:p-4 select-none antialiased overflow-hidden">
@@ -32,7 +33,11 @@ export default function TabsLayout({
         />
 
         {/* Main content view */}
-        <main className="flex-1 flex flex-col overflow-hidden pb-16 bg-[#FAF8F5]">
+        <main
+          className={`flex-1 flex flex-col pb-16 bg-[#FAF8F5] ${
+            isHome ? "overflow-y-auto" : "overflow-hidden"
+          }`}
+        >
           {children}
         </main>
 

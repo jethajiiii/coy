@@ -17,11 +17,10 @@ test.describe("Coy Discover - 390px Mobile Viewport Smoke Test", () => {
     await expect(homeTab).toBeVisible();
     await expect(discoverTab).toBeVisible();
 
-    // Verify Home tab is completely blank
+    // Verify Home tab renders showcase page
     await homeTab.click();
     await expect(page).toHaveURL(/.*\/home/);
-    const mainContent = page.locator("main");
-    await expect(mainContent).toBeEmpty();
+    await expect(page.getByRole("heading", { name: /Find out if your crush/i })).toBeVisible();
 
     // Return to Discover
     await discoverTab.click();
