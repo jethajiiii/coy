@@ -19,12 +19,12 @@ export function MatchParticles(): React.JSX.Element {
   const particles = useMemo<Particle[]>(() => {
     return Array.from({ length: 24 }).map((_, i) => {
       const angle = (i / 24) * 360 * (Math.PI / 180);
-      const distance = 80 + (i % 5) * 22;
+      const distance = 85 + (i % 5) * 20;
       return {
         id: i,
         x: Math.cos(angle) * distance,
         y: Math.sin(angle) * distance,
-        scale: 0.6 + (i % 3) * 0.35,
+        scale: 0.7 + (i % 3) * 0.3,
         rotate: (i * 45) % 360,
         color: COLORS[i % COLORS.length]!,
         shape: i % 3 === 0 ? "circle" : i % 3 === 1 ? "square" : "pill",
@@ -41,14 +41,14 @@ export function MatchParticles(): React.JSX.Element {
           animate={{
             x: p.x,
             y: p.y,
-            scale: [0, p.scale, 0],
-            opacity: [1, 1, 0],
+            scale: p.scale,
+            opacity: 0,
             rotate: p.rotate * 2,
           }}
           transition={{
-            duration: 0.9,
-            ease: [0.18, 0.89, 0.32, 1.28],
-            delay: 0.2 + (p.id % 4) * 0.04,
+            duration: 0.85,
+            ease: "easeOut",
+            delay: 0.15 + (p.id % 4) * 0.03,
           }}
           className={`absolute border-[1.5px] border-black ${
             p.shape === "circle"
