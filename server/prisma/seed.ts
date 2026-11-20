@@ -7,9 +7,9 @@ import { CURRENT_USER_ID } from "../src/config/constants";
 
 const prisma = new PrismaClient();
 
-export function guardSeedEnvironment(): void {
+export function guardSeedEnvironment(allowForce = false): void {
   const nodeEnv = process.env["NODE_ENV"] ?? "development";
-  if (nodeEnv === "production") {
+  if (!allowForce && process.env["ALLOW_DEV_RESET"] !== "true" && nodeEnv === "production") {
     throw new Error("Seed refused: Cannot run seed script in production.");
   }
   const dbUrl = process.env["DATABASE_URL"] ?? "";
@@ -24,8 +24,8 @@ export interface SeedSummary {
   inboundLikesCreated: number;
 }
 
-export async function seedDatabase(): Promise<SeedSummary> {
-  guardSeedEnvironment();
+export async function seedDatabase(allowForce = false): Promise<SeedSummary> {
+  guardSeedEnvironment(allowForce);
 
   return prisma.$transaction(
     async (tx) => {

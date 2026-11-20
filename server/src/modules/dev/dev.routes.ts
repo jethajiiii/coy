@@ -9,12 +9,12 @@ router.post(
   "/reset",
   async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      if (process.env["NODE_ENV"] === "production") {
+      if (process.env["ALLOW_DEV_RESET"] !== "true" && process.env["NODE_ENV"] === "production") {
         throw new AppError("Forbidden in production.", HTTP.BAD_REQUEST);
       }
 
       const { seedDatabase } = await import("../../../prisma/seed");
-      const summary = await seedDatabase();
+      const summary = await seedDatabase(true);
       resetCurrentUserCache();
 
       res.status(HTTP.OK).json({
