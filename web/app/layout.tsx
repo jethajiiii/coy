@@ -18,8 +18,16 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://coy-eight.vercel.app"),
   title: "Coy – Discover",
-  description: "Privacy-first crush matching",
+  description: "Privacy-first crush matching. Find out if your crush likes you back.",
+  openGraph: {
+    title: "Coy – Discover",
+    description: "Privacy-first crush matching. Find out if your crush likes you back.",
+    url: "https://coy-eight.vercel.app",
+    siteName: "Coy",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

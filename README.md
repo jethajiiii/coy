@@ -1,6 +1,14 @@
 # Coy — Discover Tab
 
+[![Live Frontend](https://img.shields.io/badge/Vercel-Live_App-black?style=for-the-badge&logo=vercel)](https://coy-eight.vercel.app)
+[![API Backend](https://img.shields.io/badge/Render-API_Status-46E3B7?style=for-the-badge&logo=render)](https://coy-pcsz.onrender.com/health)
+
 A privacy-first crush-matching app built as a standalone demonstration for Coy. Features a mobile-first swipe deck alongside a placeholder "Home" tab, powered by a robust Express + Prisma 6 + Neon PostgreSQL architecture.
+
+### 🌐 Live Production Deployment
+* **Live Web App**: [https://coy-eight.vercel.app](https://coy-eight.vercel.app)
+* **Live API**: [https://coy-pcsz.onrender.com](https://coy-pcsz.onrender.com)
+* **Health Check**: [https://coy-pcsz.onrender.com/health](https://coy-pcsz.onrender.com/health)
 
 ---
 
