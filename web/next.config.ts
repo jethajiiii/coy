@@ -1,5 +1,13 @@
 import type { NextConfig } from "next";
 
+const rawBackendUrl =
+  process.env.INTERNAL_BACKEND_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://coy-pcsz.onrender.com"
+    : "http://127.0.0.1:4000");
+
+const backendUrl = rawBackendUrl.replace(/\/+$/, "");
+
 const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
@@ -15,8 +23,6 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
-    const backendUrl =
-      process.env.INTERNAL_BACKEND_URL || "http://127.0.0.1:4000";
     return [
       {
         source: "/api/backend/:path*",

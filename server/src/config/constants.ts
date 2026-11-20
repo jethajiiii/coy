@@ -12,4 +12,4 @@ export const HTTP = {
 
 export const FEED_LIMIT = 20;
 
-export const CORS_ORIGIN = "http://localhost:3000";
+export const CORS_ORIGIN = process.env["CORS_ORIGIN"] || "*";
