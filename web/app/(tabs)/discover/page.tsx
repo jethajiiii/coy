@@ -60,8 +60,10 @@ export default function DiscoverPage(): React.JSX.Element {
     setIsResetting(true);
     try {
       await apiClient("/dev/reset", { method: "POST" });
-      retryFeed();
-      void refetchMatches();
+      await retryFeed();
+      await refetchMatches();
+    } catch (err) {
+      console.error("Failed to reset demo feed:", err);
     } finally {
       setIsResetting(false);
     }
