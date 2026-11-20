@@ -1,5 +1,4 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { seedDatabase } from "../../../prisma/seed";
 import { resetCurrentUserCache } from "../profiles/currentUser.helper";
 import { HTTP } from "../../config/constants";
 import { AppError } from "../../errors/AppError";
@@ -14,6 +13,7 @@ router.post(
         throw new AppError("Forbidden in production.", HTTP.BAD_REQUEST);
       }
 
+      const { seedDatabase } = await import("../../../prisma/seed");
       const summary = await seedDatabase();
       resetCurrentUserCache();
 

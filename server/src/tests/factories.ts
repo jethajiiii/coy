@@ -1,6 +1,6 @@
 import { prisma } from "../lib/prisma";
 import { resetCurrentUserCache } from "../modules/profiles/currentUser.helper";
-import type { User } from "../../generated/prisma";
+import type { User } from "@prisma/client";
 
 let userCounter = 1;
 

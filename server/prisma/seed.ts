@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 config();
 
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { seedProfiles } from "./seed-data/profiles";
 import { CURRENT_USER_ID } from "../src/config/constants";
 
